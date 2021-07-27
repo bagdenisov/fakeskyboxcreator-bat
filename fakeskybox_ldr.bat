@@ -1,6 +1,6 @@
 @echo off
 
-echo FakeSkyBox creator v.1.0
+echo FakeSkyBox creator v.1.1
 echo by bagdenisov 2021
 echo. 
 
@@ -40,7 +40,8 @@ echo --------------------------------------------------------------------
 echo convert vtex
 echo --------------------------------------------------------------------
 echo.
-"../../bin/vtex" -oldcubepath %name%.txt
+"../../bin/vtex" -nopause -oldcubepath %name%.txt
+echo.
 
 if not exist "../materials/%name%.vtf" (
 echo !!! final vmt file is not detected!
@@ -58,14 +59,16 @@ echo "WindowImposter"{"$envmap" "%name%" "$nofog" "1"} >> ../materials/%name%.vm
 )
 echo Complete!
 pause
-goto exit
+cls
+set name=
+goto wrong
 
 :do
 echo --------------------------------------------------------------------
 echo convert %name%%1.vtf to %name%%1.tga 
 echo --------------------------------------------------------------------
 echo.
-"../../bin/vtf2tga" -i %name%%1.vtf -o %name%%1.tga -quiet
+"../../bin/vtf2tga" -i %name%%1.vtf -o %name%%1.tga
 echo.
 exit /b
 
